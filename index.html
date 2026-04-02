@@ -379,10 +379,6 @@
     cursor: none;
   }
   .project-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 32px 80px rgba(0,0,0,0.4); }
-  .project-card.featured {
-    grid-column: 1 / -1;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
-  }
   .project-card::after {
     content: '';
     position: absolute; inset: 0;
@@ -575,6 +571,27 @@
     90% { opacity: 0.4; }
     100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
   }
+  .project-links {
+  margin-top: 1.5rem;
+}
+
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: var(--accent);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.project-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(79,156,249,0.3);
+}
 
   /* ANIMATED COUNTER */
   .counter { display: inline-block; }
@@ -612,7 +629,6 @@
     #hero { padding: 7rem 2rem 4rem; }
     .hero-stats { display: none; }
     .about-grid, .projects-grid, .edu-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
     .nav-links { display: none; }
   }
 </style>
@@ -769,8 +785,7 @@
   <div class="projects-grid">
 
     <!-- Featured -->
-    <div class="project-card featured">
-      <div class="project-info">
+    <div class="project-card">
         <div class="project-number">01</div>
         <h3 class="project-title">Cache-Aware REST API</h3>
         <p class="project-desc">A high-performance backend API leveraging Redis caching to dramatically reduce database pressure and accelerate response times by 30–40% through intelligent cache-aside strategies.</p>
@@ -786,9 +801,17 @@
           <span class="stack-tag">Redis</span>
           <span class="stack-tag">Docker</span>
         </div>
+          <div class="project-links">
+          <a
+          href="https://github.com/PrabinShrestha0716/AI-PR-review"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-link-btn"
+          >
+          View Code ↗
+          </a>
+        </div>
       </div>
-      </div>
-    </div>
 
     <!-- Project 2 -->
     <div class="project-card">
@@ -806,6 +829,17 @@
         <span class="stack-tag">Socket.IO</span>
         <span class="stack-tag">MongoDB</span>
       </div>
+            <div class="project-links">
+      <a
+      href="https://github.com/PrabinShrestha0716/AI-PR-review"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="project-link-btn"
+      >
+      View Code ↗
+      </a>
+      </div>
+
     </div>
 
     <!-- Project 3 -->
@@ -824,6 +858,16 @@
         <span class="stack-tag">GitHub API</span>
         <span class="stack-tag">OpenAI</span>
       </div>
+      <div class="project-links">
+        <a
+        href="https://github.com/PrabinShrestha0716/AI-PR-review"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-link-btn"
+        >
+        View Code ↗
+        </a>
+      </div>
     </div>
 
     <!-- Project 4 -->
@@ -841,6 +885,17 @@
         <span class="stack-tag">Express</span>
         <span class="stack-tag">PostgreSQL</span>
       </div>
+      <div class="project-links">
+      <a
+      href="https://github.com/PrabinShrestha0716/SuccessCoach"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="project-link-btn"
+      >
+      View Code ↗
+      </a>
+    </div>
+
     </div>
 
   </div>
