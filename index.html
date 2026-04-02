@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prabin Shrestha — Full-Stack Developer</title>
-<link rel="stylesheet" href="/styles.css"
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -580,8 +579,35 @@
   /* ANIMATED COUNTER */
   .counter { display: inline-block; }
 
-  @media (max-width: 900px) {
-    nav { padding: 1.2rem 2rem; }
+  @media (max-width: 768px) {
+  .hero-name {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  .hero-name .line {
+    display: block;
+    overflow: hidden;
+  }
+
+  .hero-name .word {
+    display: block;
+  }
+}
+@media (max-width: 1000px) {
+  nav { padding: 1.5rem 2.5rem; }
+  .nav-links { gap: 1.8rem; }
+}
+
+@media (max-width: 850px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.75rem; }
+}
+
+
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
     section { padding: 5rem 2rem; }
     #hero { padding: 7rem 2rem 4rem; }
     .hero-stats { display: none; }
@@ -608,12 +634,12 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
-  </ul>
+    <li><a href="#" onclick="openResume(); return false;">Resume</a></li>  </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg"></div>  
   <div class="hero-grid"></div>
 
   <div class="hero-content">
@@ -882,7 +908,31 @@
     </div>
   </div>
 </section>
+<div id="resume-overlay" style="display:none; position:fixed; bottom:0; left:15%; right:15%; height: 95vh; z-index:800; background:var(--bg2); border-top:1px solid var(--border); border-radius:24px 24px 0 0; box-shadow:0 -20px 80px rgba(0,0,0,0.6); transform:translateY(100%); transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);">
 
+  <!-- Handle bar -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:1.2rem 2rem; border-bottom:1px solid var(--border);">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:40px; height:4px; background:var(--border); border-radius:4px;"></div>
+      <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text3); letter-spacing:0.1em;">RESUME</span>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="/resume.pdf" target="_blank" class="btn-outline" style="padding:8px 18px; font-size:0.8rem; cursor:pointer;">
+        ⛶ Full Screen
+      </a>
+      <a href="/resume.pdf" download class="btn-primary" style="padding:8px 18px; font-size:0.8rem; cursor:pointer;">
+        ↓ Download
+      </a>
+      <button onclick="closeResume()" style="background:transparent; border:1px solid var(--border); color:var(--text2); border-radius:8px; width:36px; height:36px; font-size:1.1rem; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(79,156,249,0.4)'" onmouseout="this.style.borderColor='var(--border)'">✕</button>
+    </div>
+  </div>
+
+  <!-- PDF viewer -->
+  <iframe src="/resume.pdf" style="width:90%; height:100%; border:none; border-radius:0 0 24px 24px;"></iframe>
+</div>
+
+<!-- Backdrop -->
+<div id="resume-backdrop" onclick="closeResume()" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:799; backdrop-filter:blur(4px); opacity:0; transition:opacity 0.3s;"></div>
 <footer>
   <span>Built with care · Prabin Shrestha © 2026 · pxs0716@mavs.uta.edu</span>
 </footer>
@@ -987,6 +1037,30 @@ window.addEventListener('scroll', () => {
   if(window.scrollY > 60) { nb.style.padding = '1rem 4rem'; nb.style.background = 'rgba(5,8,16,0.95)'; }
   else { nb.style.padding = '1.5rem 4rem'; nb.style.background = 'rgba(5,8,16,0.7)'; }
 });
+
+function openResume() {
+  const overlay = document.getElementById('resume-overlay');
+  const backdrop = document.getElementById('resume-backdrop');
+  overlay.style.display = 'block';
+  backdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    overlay.style.transform = 'translateY(0)';
+    backdrop.style.opacity = '1';
+  });
+}
+function closeResume() {
+  const overlay = document.getElementById('resume-overlay');
+  const backdrop = document.getElementById('resume-backdrop');
+  overlay.style.transform = 'translateY(100%)';
+  backdrop.style.opacity = '0';
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    backdrop.style.display = 'none';
+  }, 400);
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeResume(); });
 </script>
 </body>
 </html>
